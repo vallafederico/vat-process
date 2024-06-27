@@ -67,8 +67,6 @@ class Material extends ShaderMaterial {
       fragmentShader,
     });
 
-    console.log(app.gl.scene.assets.offsets.source);
-
     this.uniforms = {
       u_time: { value: options?.u_time || 0 },
       u_t1: { value: options?.u_t1 || null },
