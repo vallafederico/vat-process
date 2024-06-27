@@ -1,7 +1,7 @@
 export const assets = {
-  model: "/text.glb",
-  normals: "/normals.bmp",
-  offsets: "/offsets.exr",
+  model: "/text2.glb",
+  normals: "/normals2.bmp",
+  offsets: "/offsets2.exr",
 };
 
 // console.log(assets);

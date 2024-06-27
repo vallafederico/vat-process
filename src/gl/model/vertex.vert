@@ -13,16 +13,15 @@ uniform float u_progress;
 // vat params
 uniform sampler2D u_offsets;
 uniform sampler2D u_normals;
+uniform float u_frames;
 
-const float TOTAL_FRAMES = 200.;
-// const float frame = 190.;
 const float offset_scale = 1.;
 
 
 void main() {
   vec3 pos = position;
 
-  vec2 v_displacement_uv = vec2(uv1.x, 1. - (u_progress * 200. / TOTAL_FRAMES));
+  vec2 v_displacement_uv = vec2(uv1.x, 1. - (u_progress * u_frames / u_frames));
   vec3 offset = texture2D(u_offsets, v_displacement_uv).xzy;
   vec3 new_normal = texture2D(u_normals, v_displacement_uv).xyz;
 
@@ -33,6 +32,5 @@ void main() {
   gl_Position = projectionMatrix * modelViewMatrix * vec4(new_pos, 1.0);
 
   v_uv = uv;
-  // v_uv1 = uv1;
   v_new_normal = new_normal;
 }

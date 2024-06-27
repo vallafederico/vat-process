@@ -22,7 +22,7 @@ export class Model extends Group {
     this.mesh.material = this.material;
     this.add(this.mesh);
 
-    Gui.gui.add(this, "inflate");
+    Gui.gui.add(this, "animate");
   }
 
   render(t) {
@@ -30,7 +30,7 @@ export class Model extends Group {
       Gui.object.progress + this.a.inflate;
   }
 
-  inflate(val) {
+  animate(val) {
     if (this.a.inflate === 1) {
       this.a.inflate = 0;
       return;
@@ -38,7 +38,7 @@ export class Model extends Group {
 
     gsap.to(this.a, {
       inflate: 1,
-      duration: 1,
+      duration: 8,
     });
   }
 }
@@ -67,12 +67,15 @@ class Material extends ShaderMaterial {
       fragmentShader,
     });
 
+    console.log(app.gl.scene.assets.offsets.source);
+
     this.uniforms = {
       u_time: { value: options?.u_time || 0 },
       u_t1: { value: options?.u_t1 || null },
       u_offsets: { value: app.gl.scene.assets.offsets },
       u_normals: { value: app.gl.scene.assets.normals },
       u_progress: { value: Gui.object.progress },
+      u_frames: { value: app.gl.scene.assets.offsets.source.h },
     };
 
     this.side = DoubleSide;
